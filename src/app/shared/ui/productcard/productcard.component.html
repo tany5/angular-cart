@@ -1,0 +1,18 @@
+<mat-card class="example-card mb-5">
+  <img
+    mat-card-image
+    [src]="'assets/' + product?.productImg"
+    [alt]="product?.productName"
+    class="img-fluid"
+  />
+  <mat-card-content>
+    <mat-card-title>{{ product?.productName }}</mat-card-title>
+    <p [innerHTML]="product?.description"></p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addToCart()">
+      <mat-icon>add_shopping_cart</mat-icon>
+      Add to cart
+    </button>
+  </mat-card-actions>
+</mat-card>

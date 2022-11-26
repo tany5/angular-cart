@@ -1,0 +1,68 @@
+<mat-icon
+  matBadge="{{ count }}"
+  matBadgeColor="warn"
+  [matMenuTriggerFor]="menu"
+  (menuOpened)="getProduct()"
+  role="button"
+>
+  shopping_cart
+</mat-icon>
+<mat-menu #menu="matMenu">
+  <ng-template #emptyDiv>
+    <div class="d-flex justify-content-between flex-row p-3">
+      <p class="fw-bold">Cart is empty</p>
+    </div>
+  </ng-template>
+  <ng-container *ngIf="cartItems.length > 0; else emptyDiv">
+    <div
+      class="card mb-3"
+      (click)="$event.stopPropagation()"
+      *ngFor="let product of cartItems"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            [src]="'assets/' + product?.productImg"
+            class="img-fluid rounded-start h-100 w-100"
+            [alt]="product.productName"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title">{{ product.productName }}</h3>
+            <h5>
+              <strong>{{ product.price | currency: "INR" }}</strong>
+            </h5>
+            <p class="card-text">
+              <mat-form-field class="w-100 text-center" appearance="outline">
+                <input
+                  matInput
+                  readonly
+                  [value]="product.count"
+                  [(ngModel)]="product.count"
+                />
+                <mat-icon
+                  matSuffix
+                  color="primary"
+                  role="button"
+                  (click)="addAnother(product)"
+                  >add</mat-icon
+                >
+                <mat-icon
+                  matPrefix
+                  role="button"
+                  (click)="removeProduct(product)"
+                  >remove</mat-icon
+                >
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="d-flex justify-content-between flex-row p-3" *ngIf="total > 0">
+    <p class="fw-bold">Total:</p>
+    <p class="fw-bold">{{ total }}</p>
+  </div>
+</mat-menu>

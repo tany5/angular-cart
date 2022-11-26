@@ -1,0 +1,13 @@
+<section class="pt-5 text-center">
+  <h1 class="mb-5">All Products</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div
+        class="col-sm-6 col-md-3 mb-4 text-start"
+        *ngFor="let product of productList"
+      >
+        <app-productcard [product]="product" (addProduct)="addProductToCart($event)"></app-productcard>
+      </div>
+    </div>
+  </div>
+</section>

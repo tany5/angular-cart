@@ -1,0 +1,79 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "categoryId": 2,
+      "productName": "Casual Tshirts",
+      "description": "Product description goes here",
+      "rating": 5,
+      "price": 120,
+      "productImg": "1.jpg",
+      "isAvailable": true,
+      "color": "red",
+      "reviews": 10
+    },
+    {
+      "id": 2,
+      "categoryId": 2,
+      "productName": "Party Tshirts",
+      "description": "Product description goes here",
+      "rating": 3,
+      "price": 120,
+      "productImg": "2.jpg",
+      "isAvailable": true,
+      "color": "red",
+      "reviews": 10
+    },
+    {
+      "id": 3,
+      "categoryId": 3,
+      "productName": "Soccer Tshirts",
+      "description": "Product description goes here",
+      "rating": 3,
+      "price": 34343,
+      "productImg": "3.jpg",
+      "isAvailable": true,
+      "color": "red",
+      "reviews": 10
+    },
+    {
+      "id": 5,
+      "categoryId": 1,
+      "productName": "Polo Tshirts",
+      "description": "Product description goes here",
+      "rating": 2,
+      "price": 2330,
+      "productImg": "5.jpg",
+      "isAvailable": true,
+      "color": "red",
+      "reviews": 10
+    },
+    {
+      "id": 6,
+      "categoryId": 1,
+      "productName": "Golf Tshirt",
+      "description": "Product description goes here",
+      "rating": 2,
+      "price": 2330,
+      "productImg": "6.jpg",
+      "isAvailable": true,
+      "color": "red",
+      "reviews": 10
+    }
+  ],
+  "cart": [
+    {
+      "id": 5,
+      "categoryId": 1,
+      "productName": "Polo Tshirts",
+      "description": "Product description goes here",
+      "rating": 2,
+      "price": 2330,
+      "productImg": "5.jpg",
+      "isAvailable": true,
+      "color": "red",
+      "reviews": 10,
+      "count": 1
+    }
+  ]
+}
