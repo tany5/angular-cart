@@ -1,6 +1,18 @@
 <mat-toolbar color="primary">
   <div class="container d-flex">
-    <span>Cart</span>
+    <mat-list-item>       
+      Cart
+    </mat-list-item>
+    <mat-nav-list class="list-horizontal">
+      <mat-list-item>
+        <button mat-menu-item routerLink="" routerLinkActive="router-link-active" >Home</button>    
+      </mat-list-item>
+      <mat-list-item>       
+        <button mat-menu-item routerLink="/product" routerLinkActive="router-link-active" >Products</button>  
+      </mat-list-item>
+      
+     
+    </mat-nav-list>
     <span class="spacer"></span>
     <app-cart></app-cart>
   </div>
