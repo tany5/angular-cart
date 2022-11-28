@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { CartService } from './../../shared/services/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import Iproduct from 'src/app/shared/models/product';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -8,12 +9,13 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './productlist.component.html',
   styleUrls: ['./productlist.component.scss']
 })
-export class ProductlistComponent implements OnInit {
+export class ProductlistComponent implements OnInit, OnDestroy {
   productList: Iproduct[] = []
+  prodducts$: Subscription | undefined
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.cartService.getProduct().subscribe({
+    this.prodducts$ = this.cartService.getProduct().subscribe({
       next: (products: Iproduct[]) => {
         this.productList = products
       },
@@ -23,12 +25,16 @@ export class ProductlistComponent implements OnInit {
     })
   }
 
-   addProductToCart(event: Iproduct) {
-    this.cartService.addToCart(event).subscribe({
-      next:()=>{
+  addProductToCart(event: Iproduct) {
+    this.prodducts$ = this.cartService.addToCart(event).subscribe({
+      next: () => {
         this.cartService.getTotalCartItem()
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.prodducts$?.unsubscribe()
   }
 
 }

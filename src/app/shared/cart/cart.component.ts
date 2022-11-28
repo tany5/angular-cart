@@ -9,8 +9,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  cartCount: Subscription | undefined
-  cartPrice: Subscription | undefined
+  cartCount$: Subscription | undefined
+  cartPrice$: Subscription | undefined
+  addProduct$: Subscription | undefined
+  removeProduct$: Subscription | undefined
   cartItems: Iproduct[] = []
   count: number = 0
   total: number = 0
@@ -22,14 +24,14 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   addAnother(product: Iproduct) {
-    this.cartService.addToCart(product).subscribe({
+    this.addProduct$ = this.cartService.addToCart(product).subscribe({
       next: () => {
         this.getProduct()
       }
     })
   }
   removeProduct(product: Iproduct) {
-    this.cartService.removeProduct(product).subscribe({
+    this.removeProduct$ = this.cartService.removeProduct(product).subscribe({
       next: () => {
         this.getProduct()
       }
@@ -37,8 +39,8 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   async getProduct() {
-    this.cartCount = this.cartService.getTotalCartItem().subscribe((count) => this.count = count)
-    this.cartPrice = this.cartService.getTotalCartAmount().subscribe((amount) => this.total = amount)
+    this.cartCount$ = this.cartService.getTotalCartItem().subscribe((count) => this.count = count)
+    this.cartPrice$ = this.cartService.getTotalCartAmount().subscribe((amount) => this.total = amount)
     this.cartService.cartProducts().subscribe({
       next: (items: Iproduct[]) => {
         this.cartItems = items
@@ -48,8 +50,10 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cartCount?.unsubscribe()
-    this.cartPrice?.unsubscribe()
+    this.cartCount$?.unsubscribe()
+    this.cartPrice$?.unsubscribe()
+    this.addProduct$?.unsubscribe()
+    this.removeProduct$?.unsubscribe()
   }
 
 }
